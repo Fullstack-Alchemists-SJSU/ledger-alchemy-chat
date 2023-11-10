@@ -10,14 +10,14 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/AdityaKulkarni/ledger-alchemy-chat.git"
+		"url": "https://github.com/Fullstack-Alchemists-SJSU/ledger-alchemy-chat.git"
 	},
 	"author": "Fullstack Alchemists",
 	"license": "ISC",
 	"bugs": {
-		"url": "https://github.com/AdityaKulkarni/ledger-alchemy-chat/issues"
+		"url": "https://github.com/Fullstack-Alchemists-SJSU/ledger-alchemy-chat/issues"
 	},
-	"homepage": "https://github.com/AdityaKulkarni/ledger-alchemy-chat#readme",
+	"homepage": "https://github.com/Fullstack-Alchemists-SJSU/ledger-alchemy-chat#readme",
 	"dependencies": {
 		"bcrypt": "^5.1.1",
 		"body-parser": "^1.20.2",
