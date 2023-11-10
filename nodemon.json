@@ -1,0 +1,9 @@
+{
+	"watch": ["src"],
+	"ext": ".js,.ts,.json",
+	"ignore": [],
+	"exec": "tsc && node dist/index.js",
+	"env": {
+		"SOME_VAR": "another value"
+	}
+}
