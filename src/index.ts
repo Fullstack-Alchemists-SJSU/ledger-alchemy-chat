@@ -19,7 +19,7 @@ console.log('env', process.env.SOME_VAR);
 db.authenticate()
 	.then(() => {
 		console.log('Database is connected');
-		db.sync().then(() => {
+		db.sync(/*{ force: true }*/).then(() => {
 			console.log('Database is synced');
 			app.listen(3100, () => {
 				console.log('Server is listening on port 3100');

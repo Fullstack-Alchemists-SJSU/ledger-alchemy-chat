@@ -112,3 +112,24 @@ export const getChatById = async (req: Request, res: Response) => {
 
 	res.status(200).json(chat);
 };
+
+export const deleteChatById = async (req: Request, res: Response) => {
+	const id = req.params.id;
+
+	if (!id) {
+		res.status(400).json(errorResponses.INSUFFICIENT_DATA);
+	}
+
+	const chat = await Chat.findOne({
+		where: {
+			id,
+		},
+	});
+
+	if (!chat) {
+		res.status(404).json(errorResponses.CHAT_NOT_FOUND);
+	} else {
+		await chat.destroy();
+		res.status(200).json({ message: 'Chat deleted' });
+	}
+};
