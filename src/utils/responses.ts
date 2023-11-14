@@ -30,6 +30,10 @@ export const successResponses = {
 	USER_UPDATED: {
 		message: 'User updated successfully.',
 	},
+
+	MESSAGE_ADDED_TO_QUEUE: {
+		message: 'Message added to queue.',
+	},
 };
 
 export const responseWithData = (response: any, data: any) => {

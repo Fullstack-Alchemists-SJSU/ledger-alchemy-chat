@@ -3,6 +3,8 @@ import router from './router';
 import db from './db/db';
 import bodyParser from 'body-parser';
 import cors from 'cors';
+import http from 'http';
+import { Server } from 'socket.io';
 require('dotenv').config();
 
 const app = express();
@@ -15,7 +17,21 @@ app.use(
 	})
 );
 router(app);
-console.log('env', process.env.SOME_VAR);
+
+const server = http.createServer(app);
+export const io = new Server(server, {
+	cors: {
+		origin: 'http://localhost:3000',
+	},
+});
+
+io.on('connection', (socket) => {
+	console.log('a user connected');
+	socket.on('disconnect', () => {
+		console.log('user disconnected');
+	});
+});
+
 db.authenticate()
 	.then(() => {
 		console.log('Database is connected');
@@ -23,6 +39,9 @@ db.authenticate()
 			console.log('Database is synced');
 			app.listen(3100, () => {
 				console.log('Server is listening on port 3100');
+				server.listen(3333, () => {
+					console.log('socket listening on *:3333');
+				});
 			});
 		});
 	})

@@ -23,6 +23,9 @@ const Chat = sequelize.define('chat', {
 	},
 });
 
-Chat.hasMany(Message);
+Chat.hasMany(Message, {
+	foreignKey: 'chat',
+	onDelete: 'CASCADE',
+});
 
 export default Chat;

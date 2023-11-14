@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { errorResponses } from '../../utils/responses';
 import Chat from '../../db/models/chat';
-import openAi from '../../openai/openai';
+import openAi, { GPT_MODEL } from '../../openai/openai';
 import { ForeignKeyConstraintError } from 'sequelize';
 import Message from '../../db/models/message';
 
@@ -13,7 +13,7 @@ export const streamChatCompletion = async (req: Request, res: Response) => {
 
 	const response = await openAi.chat.completions.create(
 		{
-			model: 'gpt-3.5-turbo-16k',
+			model: GPT_MODEL,
 			messages: messages.map((message: any) => ({
 				role: message.role,
 				content: message.content,
