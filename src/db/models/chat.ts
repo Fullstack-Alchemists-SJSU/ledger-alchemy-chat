@@ -9,12 +9,8 @@ const Chat = sequelize.define('chat', {
 		primaryKey: true,
 	},
 	user: {
-		type: DataTypes.INTEGER,
+		type: DataTypes.STRING,
 		allowNull: false,
-		references: {
-			model: 'users',
-			key: 'id',
-		},
 	},
 	title: {
 		type: DataTypes.STRING,
