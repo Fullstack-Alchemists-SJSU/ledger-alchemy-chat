@@ -1,4 +1,5 @@
 import { Sequelize } from 'sequelize';
+import { dbLogger } from '../utils/logger';
 require('dotenv').config();
 const sequelize = new Sequelize(
 	process.env.DATABASE_NAME as string,
@@ -10,7 +11,7 @@ const sequelize = new Sequelize(
 		dialectOptions: {
 			connectTimeout: 60000,
 		},
-		logging: true,
+		logging: (sql, timing) => dbLogger.info(sql, timing),
 		port: process.env.DATABASE_PORT as unknown as number,
 	}
 );

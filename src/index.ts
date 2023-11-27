@@ -5,6 +5,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import http from 'http';
 import { Server } from 'socket.io';
+import { errorLogger, infoLogger } from './utils/logger';
 require('dotenv').config();
 
 const app = express();
@@ -30,16 +31,25 @@ io.on('connection', (socket) => {
 db.authenticate()
 	.then(() => {
 		console.log('Database is connected');
-		db.sync(/*{ force: true }*/).then(() => {
-			console.log('Database is synced');
-			app.listen(3100, () => {
-				console.log('Server is listening on port 3100');
-				server.listen(3333, () => {
-					console.log('socket listening on *:3333');
+		infoLogger.info('Database is connected');
+		db.sync({ force: false, logging: false })
+			.then(() => {
+				console.log('Database is synced');
+				infoLogger.info('Database is synced');
+				app.listen(3100, () => {
+					console.log('Server is listening on port 3100');
+					infoLogger.info('Server started on port 3100');
+					server.listen(3333, () => {
+						infoLogger.info('Socket listening on *:3333');
+						console.log('socket listening on *:3333');
+					});
 				});
+			})
+			.catch((err) => {
+				errorLogger.error(err);
 			});
-		});
 	})
 	.catch((err) => {
 		console.log(err);
+		errorLogger.error(err);
 	});
