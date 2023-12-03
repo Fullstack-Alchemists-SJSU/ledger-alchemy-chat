@@ -4,7 +4,6 @@ import db from './db/db';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import http from 'http';
-import { Server } from 'socket.io';
 import { errorLogger, infoLogger } from './utils/logger';
 require('dotenv').config();
 
@@ -15,18 +14,6 @@ app.use(cors());
 router(app);
 
 const server = http.createServer(app);
-export const io = new Server(server, {
-	cors: {
-		origin: 'http://localhost:4000',
-	},
-});
-
-io.on('connection', (socket) => {
-	console.log('a user connected');
-	socket.on('disconnect', () => {
-		console.log('user disconnected');
-	});
-});
 
 db.authenticate()
 	.then(() => {
@@ -39,10 +26,6 @@ db.authenticate()
 				app.listen(3100, () => {
 					console.log('Server is listening on port 3100');
 					infoLogger.info('Server started on port 3100');
-					server.listen(3333, () => {
-						infoLogger.info('Socket listening on *:3333');
-						console.log('socket listening on *:3333');
-					});
 				});
 			})
 			.catch((err) => {
