@@ -1,7 +1,6 @@
 import { Queue, Worker } from 'bullmq';
 import redis from './redis';
 import Message from '../db/models/message';
-import { io } from '../index';
 
 export type TaskType<S, T> = {
 	type: 'sync' | 'async';
@@ -31,7 +30,6 @@ const messageWorker = new Worker(
 				timestamp: message.timestamp,
 			}))
 		);
-		io.emit('syncedMessage', { newMessages, userId });
 	},
 	{ connection: redis }
 );
