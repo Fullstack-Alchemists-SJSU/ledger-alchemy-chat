@@ -16,7 +16,7 @@ spec:
         spec:
             containers:
                 - name: ledger-alchemy-chat-microservice-container
-                  image: SJC.ocir.io/<DOCKER_OBJECT_STORAGE_NAMESPACE>/chat-microservice:1.0.5
+                  image: SJC.ocir.io/<DOCKER_OBJECT_STORAGE_NAMESPACE>/chat-microservice:1.0.6
                   imagePullPolicy: 'Always'
                   ports:
                       - containerPort: 3100
