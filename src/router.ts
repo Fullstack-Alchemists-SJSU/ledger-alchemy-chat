@@ -21,10 +21,10 @@ const router = (app: express.Express) => {
 	chatRouter.get('/:id', getChatById);
 	chatRouter.get('/user/:user', getChatByUser);
 	chatRouter.delete('/:id', deleteChatById);
+	chatRouter.use('/message-queue', messageQueueRouter);
 
 	messageQueueRouter.post('/', addTaskToQueue);
 
-	v1Router.use('/message-queue', messageQueueRouter);
 	v1Router.use('/chat', chatRouter);
 	baseApiRouter.use('/v1', v1Router);
 	app.use('/api', baseApiRouter);

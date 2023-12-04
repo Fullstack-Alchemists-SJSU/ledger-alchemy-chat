@@ -1,6 +1,6 @@
 {
 	"name": "ledger-alchemy-chat",
-	"version": "1.0.6",
+	"version": "1.0.7",
 	"description": "User Authentication Microservice for Ledger Alchemy",
 	"main": "src/index.ts",
 	"scripts": {
