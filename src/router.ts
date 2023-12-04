@@ -14,7 +14,7 @@ const router = (app: express.Express) => {
 	const messageQueueRouter = express.Router();
 
 	baseApiRouter.get('/', async (req, res) => {
-		res.send('Hello World!');
+		res.send({ message: 'Chat API microservice for Ledger Alchemt' });
 	});
 
 	chatRouter.post('/stream', streamChatCompletion);
