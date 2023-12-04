@@ -27,7 +27,7 @@ jobs:
                   curl -L -O https://raw.githubusercontent.com/oracle/oci-cli/master/scripts/install/install.sh
                   ls
                   chmod +x ./install.sh
-                  ./install --accept-all-defaults
+                  ./install.sh --accept-all-defaults
                   echo "/home/runner/bin" >> $GITHUB_PATH
                   exec -l $SHELL
                   oci setup repair-file-permissions --file /home/runner/.oci/config
