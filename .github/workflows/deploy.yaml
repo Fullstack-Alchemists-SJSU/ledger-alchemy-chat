@@ -25,6 +25,7 @@ jobs:
                   echo "${{ secrets.OCI_CONFIG }}" > ~/.oci/config
                   echo "${{ secrets.OCI_KEY }}" > ~/.oci/oci_api_key.pem
                   curl -L -O https://raw.githubusercontent.com/oracle/oci-cli/master/scripts/install/install.sh
+                  ls
                   chmod +x ./install.sh
                   ./install --accept-all-defaults
                   echo "/home/runner/bin" >> $GITHUB_PATH
